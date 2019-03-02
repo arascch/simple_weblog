@@ -120,4 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'arasch.ask@gmail.com'
+EMAIL_HOST_PASSWORD = '6423389496'
+EMAIL_PORT = 587    
+EMAIL_USE_TLS = True
