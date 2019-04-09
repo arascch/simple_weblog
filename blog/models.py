@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User 
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from django.contrib.postgres.search import SearchVector
+from blog.models import Post
 
 class PublishedManager(models.Manager): 
     def get_queryset(self): 
@@ -31,6 +33,9 @@ class Post(models.Model):
     objects = models.Manager() # The default manager. 
     published = PublishedManager() # Our custom manager.
     tags = TaggableManager()
+    Post.objects.annotate(
+        search = SearchVector('title' , 'body'),
+    ).filter(search = 'django')
     class Meta: 
         ordering = ('-publish',) 
 
